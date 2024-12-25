@@ -33,6 +33,9 @@ export const loginUser = asyncHandler(async (req, res) => {
 
 export const registerUser = asyncHandler(async (req, res) => {
 	const { email, password } = req.body
+	if (password.length < 8) {
+		throw new Error('Password must be longer 8 char')
+	}
 
 	const oldUser = await prisma.user.findUnique({
 		where: {

@@ -1,9 +1,11 @@
 import express from 'express'
 
+import { protect } from '../middleware/auth.middleware.js'
+
 import { getUserProfile } from './user.controller.js'
 
 const router = express.Router()
 
-router.route('/user/profile').get(getUserProfile)
+router.route('/user/profile').get(protect, getUserProfile)
 
 export default router

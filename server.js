@@ -8,7 +8,9 @@ import path from 'path'
 import { errorHandler, notFount } from './app/middleware/error.middleware.js'
 
 import authRoutes from './app/auth/auth.routes.js'
+import exercisesRoutes from './app/exercise/exercise.route.js'
 import userRoutes from './app/user/user.routes.js'
+import workoutRoutes from './app/workout/workout.route.js'
 
 const PORT = process.env.PORT || 5000
 const app = express()
@@ -21,7 +23,7 @@ async function main() {
 	app.use(cors())
 	app.use(express.json())
 	app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
-	app.use('/api', userRoutes, authRoutes)
+	app.use('/api', userRoutes, authRoutes, workoutRoutes, exercisesRoutes)
 
 	app.use(notFount)
 	app.use(errorHandler)
